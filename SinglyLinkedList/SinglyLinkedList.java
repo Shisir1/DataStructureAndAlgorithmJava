@@ -189,7 +189,7 @@ public class SinglyLinkedList {
             temp = temp.next;
             slowPtr = slowPtr.next;
         }
-        return temp;    //starting nod eof the loop
+        return temp;    //starting node of the loop
     }
 
     private void removeLoop() {
