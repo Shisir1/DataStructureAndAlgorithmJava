@@ -1,6 +1,6 @@
 package org.example.SortingAlgorithm;
 
-public class QuickSortPartitionMethod {
+public class QuickSortRecursiveMethod {
 
     public int partition(int[] arr, int low, int high){
         int pivot = arr[high];
@@ -25,6 +25,15 @@ public class QuickSortPartitionMethod {
         return j - 1;
     }
 
+    private void sort(int[] arr, int low, int high){
+        if (low < high){ //base case
+            int pivot = partition(arr,low,high);
+
+            sort(arr,low,pivot-1);
+            sort(arr,pivot+1,high);
+        }
+    }
+
     private void printArray(int[] arr){
         for (int i = 0; i < arr.length; i++){
             System.out.print(arr[i] + " ");
@@ -33,15 +42,16 @@ public class QuickSortPartitionMethod {
     public static void main(String[] args) {
         int[] arr = new int[] {9,-3,5,2,6,8,-6,1,3};
 
-        QuickSortPartitionMethod qspm = new QuickSortPartitionMethod();
+        QuickSortRecursiveMethod qs = new QuickSortRecursiveMethod();
         System.out.print("Original Array -> ");
-        qspm.printArray(arr);
+        qs.printArray(arr);
 
 
-        int pivot_index = qspm.partition(arr,0,arr.length -1);
+        int pivot_index = qs.partition(arr,0,arr.length -1);
+        qs.sort(arr,0,arr.length-1);
         System.out.print("\nPivot Index after Sorting -> " + pivot_index);
-        System.out.print("\nAfter Quick Sort Partition Method -> ");
-        qspm.printArray(arr);
+        System.out.print("\nAfter Quick Sort Recursive Method -> ");
+        qs.printArray(arr);
 
     }
 }
