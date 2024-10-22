@@ -60,16 +60,15 @@ public class BinarySearchTree {
         bst.insert(5);
         bst.insert(3);
         bst.insert(7);
-        bst.insert(1);
+        bst.insert(10);
 
         System.out.print("Binary Search Tree insertion -> ");
         bst.inOrder();
         System.out.println();
-        if(null != bst.search(10)){
-            int givenKey = 10;
+        int givenKey = 10;
+        if(bst.search(10) != null){
             System.out.println("Key " + givenKey + " Found!!");
         } else {
-            int givenKey = 10;
             System.out.println("Key " + givenKey + " NOT found!!!");
         }
     }
