@@ -62,6 +62,8 @@ public class BinarySearchTree {
         bst.insert(7);
         bst.insert(10);
 
+        //just a test
+
         System.out.print("Binary Search Tree insertion -> ");
         bst.inOrder();
         System.out.println();
