@@ -55,18 +55,60 @@ public class HashTable {
         return key % numOfBuckets;  //also can be buckets.length
     }
     public String get(Integer key){
+        if(key == null){
+            throw new IllegalArgumentException("key is null !!!");
+        }
+
+        int bucketIndex = getBucketIndex(key);
+        HashNode head = buckets[bucketIndex];
+        while (head != null){
+            if(head.key.equals(key)){
+                return head.value;
+            }
+            head = head.next;
+        }
         return null;
     }
     public String remove(Integer key){
-        return null;
+        if(key == null){
+            throw new IllegalArgumentException("Key is null !!");
+        }
+        int bucketIndex = getBucketIndex(key);
+        HashNode head = buckets[bucketIndex];
+        HashNode previous = null;
+
+        while (head != null){
+            if(head.key.equals(key)){
+                break;
+            }
+            previous = head;
+            head = head.next;
+        }
+        if(head == null){
+            return null;
+        }
+        size--;
+        if(previous != null){
+            previous.next = head.next;
+        } else {
+            buckets[bucketIndex] = head.next;
+        }
+        return head.value;
     }
 
     public static void main(String[] args) {
         HashTable table = new HashTable(10);
         table.put(105, "Tom");
         table.put(21, "Sana");
-        table.put(21, "Harry");
+        table.put(21, "Harry"); //this node replaces Sana node because key is same
         table.put(31, "Shisir");
+        System.out.println(table.size());
+
+        System.out.println(table.get(31));  //returns "Shisir"
+
+        System.out.println(table.get(21));
+
+        System.out.println(table.remove(31));
         System.out.println(table.size());
     }
 }
